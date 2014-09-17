@@ -1,0 +1,42 @@
+# Configuration file for Gammu SMS Daemon
+
+# Gammu library configuration, see gammurc(5)
+[gammu]
+# Please configure this!
+port = /dev/ttyUSB0
+connection = at19200
+# Debugging
+#logformat = textall
+
+# SMSD configuration, see gammu-smsdrc(5)
+[smsd]
+pin = 53787
+runonreceive = /var/www/redmine/kalkun/scripts/daemon.sh
+CommTimeout = 30
+SendTimeout = 30
+MaxRetries = 3
+deliveryreport = sms
+transmitformat = auto
+# backend
+Service = sql
+Driver = native_mysql
+User = root
+Password = root
+PC = localhost
+Database = kalkun
+# chemain des messages 
+InboxPath = /var/spool/sms/inbox/
+OutboPpath = /var/spool/sms/outbox/
+SentSMSPath = /var/spool/sms/sent/
+ErrorSMSPath = /var/spool/sms/error/
+service = files
+logfile = syslog
+# Increase for debugging information
+debuglevel = 255
+logfile = /var/log/gammu.log
+
+# Paths where messages are stored
+inboxpath = /var/spool/gammu/inbox/
+outboxpath = /var/spool/gammu/outbox/
+sentsmspath = /var/spool/gammu/sent/
+errorsmspath = /var/spool/gammu/error/
