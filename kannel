@@ -1,0 +1,107 @@
+# CORE
+group = core
+admin-port = 13000
+admin-password = playsms
+status-password = playsms
+log-file = "/var/log/kannel/kannel.log"
+log-level = 0
+access-log = "/var/log/kannel/access.log"
+smsbox-port = 13001
+store-type = file
+store-file = "/var/log/kannel/kannel.store"
+unified-prefix =  "00225,+225,00"
+#store-type = spool
+#store-location = /var/spool/kannel/store
+smsbox-max-pending = 100
+
+# SMSBOX
+group = smsbox
+bearerbox-host = localhost
+bearerbox-port = 13001
+sendsms-port = 13131
+sendsms-chars = "0123456789+- "
+log-file = /var/log/kannel/smsbox.log
+log-level = 0
+access-log = /var/log/kannel/access.log
+global-sender = "cool"
+sendsms-url = "/cgi-bin/sendsms"
+
+
+# SMSC fake
+#group = smsc
+#smsc = fake
+#smsc-id = gsm1
+#host = localhost
+#port = 13013
+
+#SMSC MODEM GSM
+group = smsc
+smsc = at
+port = 13013
+host = "localhost"
+smsc-id = huawei
+modemtype = huawei
+device = /dev/ttyUSB0
+speed = 96000
+#sms-center = +22507070002
+my-number = +22542202316
+#my-number = +22503487790
+sms-center = +22501099099
+#my-number = +22501428947
+sim-buffering = true
+#pin =0000
+
+
+
+
+
+# SMSC fastrack
+#group = smsc
+#smsc = at
+#smsc-id = gsm1
+#allowed-smsc-id = gsm1
+#preferred-smsc-id = gsm1
+#modemtype = wavecom
+#device = /dev/ttyACM0
+#log-file = /var/log/kannel/smsc-gsm1.log
+#log-level = 0
+
+#group = modems
+#id = wavecom
+#message-storage = SM
+#need-sleep = true
+#speed = 115200
+#MODEMS
+group = modems
+id = huawei
+name = "huawei" 
+detect-string = "huawei"
+init-string = "ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0"
+message-storage = "SM"
+need-sleep = true
+speed = 460800
+
+# SENDSMS-USER
+group = sendsms-user
+#default-smsc = gsm1
+username = playsms
+password = playsms
+#max-messages = 6
+#concatenation = true
+
+# SMS SERVICE 'default'
+group = sms-service
+keyword = default
+assume-plain-text = true
+catch-all = true
+accepted-smsc = huawei
+accept-x-kannel-headers = true
+omit-empty = true
+#max-messages = 0
+get-url = "http://localhost/playsms/index.php?app=call&cat=gateway&plugin=kannel&access=geturl&t=%t&q=%q&a=%a"
+#recevoir un sms via l'url
+ get-url = "http://localhost/kannel/kannel-receive.php?type=inbsms&text=%a&timesent=%t&from=%p&to=%P&smsc=%i&uuid=%I&delivery=%d&service=%n&encoding=%c&class=%m&mwi=%M&charset=%C&udh=%u&dcs=%O&origsmsc=%f"
+
+
+
+
