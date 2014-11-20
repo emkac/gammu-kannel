@@ -1,3 +1,9 @@
+install kannel 
+    sudo apt-get install gcc
+    sudo apt-get install libXML2-devel
+    sudo apt-get install wvdial
+    apt-get install kannel
+
 # CORE
 group = core
 admin-port = 13000
@@ -111,3 +117,4 @@ bearerbox -v 1 /etc/kannel/kannel.conf
 
 ouvrir un deuxiem terminal puis lancer
 smsbox -v 1 /etc/kannel/kannel.conf
+
