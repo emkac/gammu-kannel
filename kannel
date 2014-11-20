@@ -105,3 +105,9 @@ get-url = "http://localhost/playsms/index.php?app=call&cat=gateway&plugin=kannel
 
 
 
+### demarage de bearbeat et sendsms
+ouvrir un premier terminal puis lancer
+bearerbox -v 1 /etc/kannel/kannel.conf
+
+ouvrir un deuxiem terminal puis lancer
+smsbox -v 1 /etc/kannel/kannel.conf
